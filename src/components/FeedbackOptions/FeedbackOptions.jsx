@@ -8,16 +8,29 @@ class FeedbackOptions extends Component {
     bad: 0,
   };
 
+  static defaultProps = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
+
+  hundleIncrement = index => {
+    const { options } = this.props;
+    const option = options[index];
+    this.setState(preState => ({ [option]: preState[option] + 1 }));
+  };
+
   render() {
     const { options } = this.props;
-    const arr = Object.values(this.props);
-    const obj = { ...arr };
-    console.log(options);
     return (
       <SectionTitle title="Please leave feedback">
-        {options.map(el => (
-          <Button key={el.length} type="button">
-            {el}
+        {options.map((option, index) => (
+          <Button
+            key={option.length}
+            type="button"
+            onClick={() => this.hundleIncrement(index)}
+          >
+            {option}
           </Button>
         ))}
       </SectionTitle>
