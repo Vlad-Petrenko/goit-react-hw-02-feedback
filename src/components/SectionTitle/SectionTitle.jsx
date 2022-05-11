@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Section, Title } from './SectionTitle';
 
 const SectionTitle = ({ children, title }) => {
@@ -9,3 +10,8 @@ const SectionTitle = ({ children, title }) => {
   );
 };
 export default SectionTitle;
+
+SectionTitle.propTypes = {
+  children: PropTypes.node,
+  title: PropTypes.string,
+};

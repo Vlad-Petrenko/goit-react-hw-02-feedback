@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import FeedbackOptions from './FeedbackOptions';
 import Statistics from './Statistics';
 import Notification from './Notification';
@@ -8,6 +9,16 @@ export class App extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
+  };
+
+  static propTypes = {
+    state: PropTypes.arrayOf(
+      PropTypes.shape({
+        good: PropTypes.number.isRequired,
+        neutral: PropTypes.number.isRequired,
+        bad: PropTypes.number.isRequired,
+      })
+    ),
   };
 
   hundleIncrement = option => {
