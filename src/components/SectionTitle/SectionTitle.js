@@ -8,4 +8,6 @@ export const Section = styled.section`
   text-align: center;
 `;
 
-export const Title = styled.h1``;
+export const Title = styled.h1`
+  font-size: 32px;
+`;

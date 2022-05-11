@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import FeedbackOptions from './FeedbackOptions';
 import Statistics from './Statistics';
+import Notification from './Notification';
 
 export class App extends Component {
   state = {
@@ -9,23 +10,38 @@ export class App extends Component {
     bad: 0,
   };
 
+  hundleIncrement = option => {
+    this.setState(preState => ({ [option]: preState[option] + 1 }));
+  };
+
+  countTotalFeedback = () => {
+    const obj = this.state;
+    return Object.values(obj).reduce((a, b, c) => a + b + c, -3);
+  };
+
+  countPositiveFeedbackPercentage = (a, b) => {
+    return Math.round((a / b) * 100) + '%';
+  };
+
   render() {
     const { good, neutral, bad } = this.state;
-
-    const { total } = this.props;
     return (
       <>
         <FeedbackOptions
           options={['good', 'neutral', 'bad']}
-          onLeaveFeedback={total}
+          onLeaveFeedback={this.hundleIncrement}
         />
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={total}
-          positivePercentage={total}
-        />
+        {this.countTotalFeedback() > 0 ? (
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage}
+          />
+        ) : (
+          <Notification message="There is no feedback" />
+        )}
       </>
     );
   }
