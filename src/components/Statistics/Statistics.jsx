@@ -1,15 +1,15 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Paragraf } from './Statistics';
+import { Paragraf } from './Statistics.styled';
 import SectionTitle from '../SectionTitle';
 
 class Statistics extends Component {
   static propTypes = {
-    good: PropTypes.number,
-    neutral: PropTypes.number,
-    bad: PropTypes.number,
-    total: PropTypes.number,
-    positivePercentage: PropTypes.func,
+    good: PropTypes.number.isRequired,
+    neutral: PropTypes.number.isRequired,
+    bad: PropTypes.number.isRequired,
+    total: PropTypes.number.isRequired,
+    positivePercentage: PropTypes.func.isRequired,
   };
   render() {
     const { good, neutral, bad, total = 0, positivePercentage } = this.props;
