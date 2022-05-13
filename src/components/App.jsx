@@ -11,16 +11,6 @@ export class App extends Component {
     bad: 0,
   };
 
-  static propTypes = {
-    state: PropTypes.arrayOf(
-      PropTypes.shape({
-        good: PropTypes.number.isRequired,
-        neutral: PropTypes.number.isRequired,
-        bad: PropTypes.number.isRequired,
-      })
-    ),
-  };
-
   hundleIncrement = option => {
     this.setState(preState => ({ [option]: preState[option] + 1 }));
   };
@@ -39,7 +29,7 @@ export class App extends Component {
     return (
       <>
         <FeedbackOptions
-          options={['good', 'neutral', 'bad']}
+          options={Object.keys(this.state)}
           onLeaveFeedback={this.hundleIncrement}
         />
         {this.countTotalFeedback() > 0 ? (
